@@ -1,19 +1,15 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :set_post, only: [:edit, :update, :destroy]
 
     # GET /posts
     def index
-      @posts = Post.all
-    end
-
-    # GET /posts/1
-    def show
+      @posts = current_author.posts
     end
 
     # GET /posts/new
     def new
-      @post = Post.new
+      @post = current_author.posts.build
     end
 
     # GET /posts/1/edit
@@ -22,7 +18,7 @@ module Authors
 
     # POST /posts
     def create 
-      @post = Post.new(post_params)
+      @post = current_author.posts.build(post_params)
 
       if @post.save
         redirect_to @post, notice: 'Post was successfully created.'
@@ -34,7 +30,7 @@ module Authors
     # PATCH/PUT /posts/1
     def update
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to posts_path notice: 'Post was successfully updated.'
       else
         render :edit
       end
@@ -49,12 +45,12 @@ module Authors
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = Post.find(params[:id])
+        @post = current_author.posts.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def post_params
-        params.require(:post).permit(:title, :description, :published, :published_at, :author_id)
+        params.require(:post).permit(:title, :description)
       end
   end
 end
