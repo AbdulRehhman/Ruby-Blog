@@ -14,6 +14,7 @@ module Authors
 
     # GET /posts/1/edit
     def edit
+      @paragraph = @post.elements.build(element_type: 'paragraph')
     end
 
     # POST /posts
@@ -23,7 +24,7 @@ module Authors
       if @post.save
         redirect_to @post, notice: 'Post was successfully created.'
       else
-        render :new
+        render :new 
       end
     end
 
