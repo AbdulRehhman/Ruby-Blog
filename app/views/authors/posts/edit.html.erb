@@ -15,16 +15,24 @@
 				<%= form.submit "Paragraph", class: 'btn btn-primary' %>
 			<% end%>
 		</div>
-		<% @post.elements.each do |element| %>
-			<% if element.persisted? %>
-				<div class="trix-content">
-					<%= form_with(model: [@post, element]) do |form| %>
-						<%= form.rich_text_area :content %>
-						<%= form.submit "Save", class: 'btn btn-primary' %>
+		<div class="card">
+			<div class="card-body">
+				<% @post.elements.each do |element| %>
+					<% if element.persisted? %>
+						<div class="mb-3">
+							<div class='paragraph-content'>
+							</div>
+							<div class='paragraph-form'>
+							</div>
+							<%= form_with(model: [@post, element]) do |form| %>
+								<%= form.rich_text_area :content %>
+								<%= form.submit "Save", class: 'btn btn-primary mt-3' %>
+							<% end %>
+						</div>
 					<% end %>
-				</div>
-			<% end %>
-		<% end%>
+				<% end%>
+			</div>	
+		</div>
 	<div>
 </div>
 
