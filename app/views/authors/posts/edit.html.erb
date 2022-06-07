@@ -15,6 +15,13 @@
 			<div class="card-body">
 				<h4 class="card-title"> Editing Post </h4>
 				<%= render 'form', post: @post %>
+			</div>
+			<div class="card-footer">
+				<% if @post.published? %>
+					<a href="" class="btn btn-secondary btn-block" data-reflex="click->Publisher#unpublish" data-post-id='<%= @post.id %>'> Unpublish </a>
+				<% else %>
+					<a href="" class="btn btn-dark btn-block" data-reflex="click->Publisher#publish" data-post-id='<%= @post.id %>'> Publish </a>
+				<% end %> 
 			</div>	
 		</div>
 	</div>
@@ -30,7 +37,13 @@
 			<% end%>
 		</div>
 		<div class="card">
-			<div class="card-body">
+			<div class="card-body pt-5">
+				<% if @post.published? %>
+					<span class="badge badge-primary mr-1">
+						Published
+					</span>
+					Published <%= time_ago_in_words(@post.published_at) %>
+				<% end %>
 				<% @post.elements.each do |element| %>
 					<% if element.persisted? %>
 						<% if element.paragraph? %>
