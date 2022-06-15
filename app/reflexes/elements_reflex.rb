@@ -4,7 +4,8 @@ class ElementsReflex < ApplicationReflex
 		elements.each do |element|
 			element_record = Element.find(element['id'])
 			element_record.update(position: element['position'])
-		end
+		end 
+		@halted = true
 	end
 end
   
