@@ -50,11 +50,11 @@
 					Unpublished
 				<% end %>
 			</div>
-			<div class="card-body pt-5">
-				<ul id='elements'>
-					<% @post.elements.each do |element| %>
+			<div class="card-body pt-5" data-controller="elements">
+				<ul id='elements' data-action="drop->elements#sort">
+					<% @post.elements.order(position: :asc).each do |element| %>
 						<% if element.persisted? %>
-							<li>
+							<li data-id="<%= element.id %>" class="element-item">
 								<% if element.paragraph? %>
 									<div class="mb-3 p-3 paragraph">
 										<div class='paragraph-content'>
