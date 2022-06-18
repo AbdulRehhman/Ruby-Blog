@@ -7,6 +7,11 @@ class Post < ApplicationRecord
 
   has_one_attached :header_image
 
+  validates_presence_of :title, :description
+  validates_length_of :description, within: 50..250
+  
+  scope :published, -> {where(published: true).order(published_at: :desc)}
+
   def should_generate_new_friendly_id?
     title_changed?
   end
