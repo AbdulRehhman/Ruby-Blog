@@ -61,4 +61,5 @@ gem 'mini_magick'
 
 gem "stimulus_reflex", "~> 3.4"
 gem 'friendly_id', '~> 5.4.0'
+gem 'impressionist'
 
