@@ -1,4 +1,27 @@
-.readers {
+
+.readers.posts.show {
+	.post-card {
+		.header-image {
+			height: 400px;
+			background-size: cover;
+			background-position: center;
+		}
+		
+		.image-element {
+			text-align: center;
+	
+			img {
+				max-width: 80%;
+			}
+		}
+	
+		.content-element {
+	
+		}
+	}
+}
+
+.readers.home.index {
 	.post-card {
 		height: 550px;
 		.header-image {
